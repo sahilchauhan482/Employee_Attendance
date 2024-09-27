@@ -1,0 +1,27 @@
+﻿@model EmployeeWeb.Models.ViewModel.EmployeeViewModel
+@* @{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center" style="margin-top:10%" >
+    <h1 class="display-4"><img src="~/images/welcome.jpg" height="300" /></h1>
+    
+</div> *@
+<div class="container">
+<div class="Leftbar">
+        @Html.Partial("_attendanceForDashboard",Model.EmployeeAttendance)
+</div>
+<div class="sidebar">
+    @Html.Partial("_CurrentMonthBirthdays",Model.employeeBDto)
+</div>
+<div class="midbar">
+    @Html.Partial("_CurrentMonthAniversaryPartial",Model.employeesAniversariesDTOs)
+</div>
+</div>
+
+<style>
+    .container {
+        flex-wrap: nowrap;
+        display: flex;
+    }
+</style>

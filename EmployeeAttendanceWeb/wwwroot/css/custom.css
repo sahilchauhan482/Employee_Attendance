@@ -1,0 +1,408 @@
+﻿
+
+.container {
+    
+    flex-wrap: nowrap;
+}
+
+.Leftbar,
+.midbar,
+.sidebar {
+    flex: 1; /* Each box takes up equal space */
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 500px;
+    margin-left: 10px;
+    margin-right: 20px;
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Add a subtle shadow */
+    background: linear-gradient(145deg, #e0e0e0, #ffffff); /* Add a gradient background */
+    transition: all 0.3s ease; /* Add a smooth transition for hover effect */
+}
+
+.Leftbar {
+    margin-right: 20px; /* Adjust spacing between boxes */
+}
+
+.midbar {
+    margin-right: 20px; /* Adjust spacing between boxes */
+}
+
+    /* Add hover effect */
+    .Leftbar:hover,
+    .midbar:hover,
+    .sidebar:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+        transform: scale(1.05); 
+        transition: transform 0.4s ease;  /* Increase shadow for 3D effect */
+    }
+.bg-light-green {
+    background-color: lightgreen !important;
+}
+.navbar-nav .nav-item .nav-link {
+    transition: color 0.3s, background-color 0.3s;
+    padding: 7px 15px; /* Increase padding for longer elements */
+}
+.navbar-nav {
+    margin-left: 57px; /* Add margin to move all elements to the right */
+
+}
+
+    .navbar-nav .nav-item .nav-link {
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 1.1em;
+        /* Smooth transition for hover effect */
+    }
+
+        .navbar-nav .nav-item .nav-link:hover {
+            color: white !important;
+            background-color: green;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Add a shadow to simulate depth */
+            transform: translateY(-5px); /* Move the element up by 5px */
+        }
+
+.AddEmployee {
+    transition: all 0.4s ease;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+    .AddEmployee:hover {
+        color: white !important;
+        background-color: green;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+        transform: scale(1.05); 
+        transition: transform 0.3s ease; 
+    }
+
+.Action {
+    transition: all 0.4s ease;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+    .Action:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Add a shadow to simulate depth */
+        transform: scale(1.2);
+    }
+
+.Action {
+    transition: transform 0.3s ease; /* Add a smooth transition for transform */
+}
+.navbar-bg {
+    background-color:seashell !important; /* Set the background color to light gray */
+    /* Add other styles if needed */
+}
+
+.navbar {
+    border-bottom: 2px solid lightgray; /* Light color border area for navbar */
+}
+
+.employeeHeader {
+    justify-content: space-evenly;
+    border: 1px solid;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+.employeeHeader {
+    
+    background-color:linen;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.employeeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #ccc;
+    
+    margin-bottom: 10px;
+}
+
+.headerItem {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid groove;
+    
+}
+
+    .headerItem:last-child {
+        border-right: none;
+    }
+
+.headerText {
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+}
+
+.headerValue {
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+}
+.dropdown-menu-custom {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item-custom {
+    color: darkcyan;
+    padding: 8px 20px;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    clear: both;
+    text-align: left;
+}
+
+    .dropdown-item-custom:hover {
+        background-color: lightcyan;
+    }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.th {
+    background-color: #f1f1f1;
+}
+
+.on-leave {
+    background-color: #ffec99;
+}
+
+.absent {
+    background-color: #ffb3b3;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.present {
+    background-color: #a2d9a0;
+}
+
+.on-leave {
+    background-color: #ffec99;
+}
+
+.absent {
+    background-color: #ffb3b3;
+}
+
+.bold {
+    font-weight: bold;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.present {
+    background-color: #a2d9a0;
+}
+
+.on-leave {
+    background-color: #ffec99;
+}
+
+.absent {
+    background-color: #ffb3b3;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.empty {
+    background-color:white;
+}
+.input[type="month"] {
+    padding: 8px; /* Add padding to increase the size */
+    font-size: 16px; /* Increase the font size */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 4px; /* Add border radius for rounded corners */
+    width: 200px; /* Set a specific width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+.sticky-header {
+    position: sticky !important;
+    left: 0;
+    top: -1px;
+    background-color: white;
+    z-index: 0;
+}
+
+.sticky-col {
+    position: sticky !important;
+    left: -1px;
+    background-color: white;
+    z-index: 0;
+}
+
+/* Sticky cell content */
+.sticky-cell {
+    position: sticky;
+    left: 0;
+    background-color: #fff;  
+    padding-left: 5px;  
+}
+
+table.dataTable tbody tr.highlight {
+    background-color: green !important;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltiptext {
+    display: none;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.custom-dropdown-menu .dropdown-toggle::after {
+    display: none !important;
+}
+
+.custom-dropdown-menu ul {
+    list-style-type: none !important;
+}
+.margin-top-10 {
+    margin-top: 15px;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid red;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    max-width: 450px;
+    width: 70%;
+}
+
+.popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.popup-logo {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    margin-right: 10px;
+}
+
+.popup-title {
+    color: red;
+    margin: 0;
+}
+
+.countdown-text{
+    color:red;
+}
+.countdown {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    text-align: center;
+}
+
+    .button-container button {
+        padding: 10px 20px;
+        margin-right: 10px;
+        margin-bottom: 1px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+.toast-success {
+    background-color: #28a745 !important;
+    color: #fff !important;
+}
+
+/* Toastr error notification */
+.toast-error {
+    background-color: #dc3545 !important;
+   
+    color: #fff !important;
+}

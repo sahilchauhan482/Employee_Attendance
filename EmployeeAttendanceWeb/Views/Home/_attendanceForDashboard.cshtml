@@ -1,0 +1,31 @@
+﻿@model List<EmployeeCommon.DTOs.AttendanceDTO>
+<div class="card border-0" style="background: linear-gradient(145deg, #ffffff, #f0f0f0); border-radius: 15px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);">
+    <div class="card-header bg-primary text-white" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+        <h5 class="card-title">Today's Leave/Absent</h5>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col">
+                <h5 class="text-info">On-Leave</h5>
+
+                @foreach (var item in Model)
+                {
+                    @if (item.Leave)
+                    {
+                        <div>@item.EmployeeName</div>
+                    }
+                }
+            </div>
+            <div class="col">
+                <h5 class="text-danger">Absent</h5>
+                @foreach (var item in Model)
+                {
+                    @if (item.Absent)
+                    {
+                        <div>@item.EmployeeName</div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

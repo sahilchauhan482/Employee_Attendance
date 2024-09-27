@@ -1,0 +1,75 @@
+﻿@model List<EmployeeCommon.DTOs.AttendanceDTO>
+
+@{
+    // Group the model by EmployeeId
+    var groupedModel = Model.GroupBy(e => e.EmployeeId).Select(g => g.First()).ToList();
+}
+
+<table width="100%" class="table table-bordered mt-3 table-bordered table-hover">
+    <thead class="thead-primary">
+        <tr>
+            <th hidden>EmployeeId</th>
+            <th hidden>Id</th>
+            <th class="text-center" width="15%">Employee Name</th>
+            <th class="text-center" width="15%">Full Days</th>
+            <th class="text-center" width="15%">Half Days</th>
+            <th class="text-center" width="15%">Short Leaves</th>
+            <th class="text-center" width="15%">Working days</th>
+            <th class="text-center" width="15%">Monthly Salary</th>
+            <th class="text-center" width="15%">Salary to be paid</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in groupedModel)
+        {
+            int fullDaysCount = 0;
+            int halfDaysCount = 0;
+            int shortLeavesCount = 0;
+            double workingdayscount = 0; 
+            var employeeAttendance = Model.Where(e => e.EmployeeId == item.EmployeeId).ToList();
+            foreach (var attendance in employeeAttendance)
+            {
+                TimeSpan inTimeSpan = attendance.InTime.TimeOfDay;
+                TimeSpan outTimeSpan = attendance.OutTime.TimeOfDay;
+                int inTime = (int)inTimeSpan.TotalHours;
+                int outTime = (int)outTimeSpan.TotalHours;
+                double attendanceHours = outTime - inTime;
+
+                if (attendanceHours > 0)
+                {
+                    if (attendanceHours >= 9)
+                    {
+                        fullDaysCount++;
+                    }
+                    else if (attendanceHours >= 7 && attendanceHours < 9)
+                    {
+                        shortLeavesCount++;
+                    }
+                    else if (attendanceHours >= 4.5 && attendanceHours < 7)
+                    {
+                        halfDaysCount++;
+                    }
+                }
+            }
+
+            int totalDaysInMonth = DateTime.DaysInMonth(item.AttendanceDate.Year, item.AttendanceDate.Month);
+            int totalWeekendDays = Enumerable.Range(1, totalDaysInMonth)
+            .Count(day => new DateTime(item.AttendanceDate.Year, item.AttendanceDate.Month, day) <= DateTime.Now
+            && (new DateTime(item.AttendanceDate.Year, item.AttendanceDate.Month, day).DayOfWeek == DayOfWeek.Saturday
+            || new DateTime(item.AttendanceDate.Year, item.AttendanceDate.Month, day).DayOfWeek == DayOfWeek.Sunday));
+            workingdayscount = fullDaysCount + (halfDaysCount / 2.0) + (shortLeavesCount / 1.3) + totalWeekendDays;
+            // Display employee data
+            <tr>
+                <td class="employeeId" hidden>@item.EmployeeId</td>
+                <td class="id" hidden>@item.Id</td>
+                <td style="font-weight:700" class="text-center">@item.EmployeeName</td>
+                <td class="text-center">@fullDaysCount</td>
+                <td class="text-center">@halfDaysCount</td>
+                <td class="text-center">@shortLeavesCount</td>
+                <td class="text-center">@workingdayscount.ToString("0.0")</td>
+                <td class="text-center">@item.EmployeeSalary</td>
+                <td class="text-center">@((item.EmployeeSalary / totalDaysInMonth * (decimal)workingdayscount).ToString("0.00"))</td>
+            </tr>
+        }
+    </tbody>
+</table>

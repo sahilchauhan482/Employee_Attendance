@@ -1,0 +1,70 @@
+﻿@model List<EmployeeCommon.DTOs.AttendanceDTO>
+
+<div class="d-flex employeeHeader">
+    <div class="headerItem">
+        <span class="headerText ">Total Employees:</span>
+        <span class="headerValue total_employee">@Model.Count()</span>
+    </div>
+    <div class="headerItem">
+        <span class="headerText ">Marked Employees:</span>
+        <span class="headerValue marked_employee">@Model.Where(x=>x.Id>0).Count()</span>
+    </div>
+    <div class="headerItem">
+        <span class="headerText ">Unmarked Employees:</span>
+        <span class="headerValue unmarked_employee">@Model.Where(x=>x.Id==0).Count()</span>
+    </div>
+</div>
+
+<table id="attendance-table" width="100%" class="table table-bordered mt-3">
+
+    <thead class="thead-primary">
+        <tr>
+            <th hidden>EmployeeId</th>
+            <th hidden>Id</th>
+            <th class="text-center" width="15%">Employee Name</th>
+            <th class="text-center" width="15%">In Time</th>
+            <th class="text-center" width="15%">Out Time</th>
+            <th class="text-center" width="15%">On Leave</th>
+            <th class="text-center" width="15%">Absent</th>
+            <th class="text-center" width="15%">Duration</th>
+            <th class="text-center" width="20%">Attd.Status</th>
+            <th class="text-center" width="20%">Discrepancy</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="employeeId" hidden>@item.EmployeeId</td>
+                <td class="id" hidden>@item.Id</td>
+                <td class="text-center">@item.EmployeeName</td>
+                <td>
+                    <div class="input-group">
+                        <input id="inTimeInput" class="form-control text-center in-time employee-data" type="time" value="@(item.InTime != DateTime.MinValue ? item.InTime.ToString("HH:mm") : "")" />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary btn-sm erase-button" type="button">&times;</button>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input id="outTimeInput" class="form-control text-center out-time employee-data" type="time" value="@(item.OutTime != DateTime.MinValue ? item.OutTime.ToString("HH:mm") : "")" />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary btn-sm erase-button" type="button">&times;</button>
+                        </div>
+                    </div>
+                </td>
+                <td class="text-center"><input type="checkbox" class="leave-checkbox employee-data" @Html.Raw(item.Leave ? "checked" : "") /></td>
+                <td class="text-center"><input type="checkbox" class="absent-checkbox employee-data" @Html.Raw(item.Absent ? "checked" : "") /></td>
+                <td class="text-center"><input type="text" class="duration form-control text-center" disabled value="@item.Duration" name="@item.Duration" /></td>
+                <td class="text-center"><input type="text" class="status form-control text-center" value="" name="" /></td>
+                <td class="text-center"><input type="text" class="status1 form-control text-center" value="" name="" /></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="~/js/Attendance.js"></script>
+}

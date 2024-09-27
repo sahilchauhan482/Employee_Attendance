@@ -1,0 +1,23 @@
+﻿@model EmployeeWeb.Models.ViewModel.AttendanceViewModel
+
+<div class="container">
+    <div class="row justify-content-center">
+        <h2 class="text-center text-primary">Employee Attendance⏰</h2>
+        <input id="attendance-date" type="date" style="width:20%;margin-right:77%;" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        <div class="col-12">
+            
+           
+            <div id="attendance_data">
+                @{
+                    Html.RenderPartial("_AttendancePartial", Model.EmployeeAttendance);
+                }
+            </div>
+            <button id="save-attendance"  class="btn btn-primary">Save</button>
+            <button id="update-attendance" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/attendance.js"></script>
+}

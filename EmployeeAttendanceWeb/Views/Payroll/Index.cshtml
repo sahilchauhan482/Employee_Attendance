@@ -1,0 +1,28 @@
+﻿@model EmployeeWeb.Models.ViewModel.AttendanceViewModel
+
+<div class="row">
+    <div class="col-md-3">
+        <input type="month" id="monthInput" class="form-control mb-2" value="@DateTime.Now.ToString("yyyy-MM")" />
+    </div>
+    <div class="col-md-9 text-right">
+        <a href="#" id="Report" class="btn btn-success">Download Report</a>
+    </div>
+</div>
+<div id="error_message" style="color: black; text-align: center; font-size: 30px; font-weight: bold;"></div>
+<div id="attendance_data">
+    @if (Model != null && Model.EmployeeAttendance.Count() > 0)
+    {
+        Html.RenderPartial("_ByMonthPayrollPartial", Model.EmployeeAttendance);
+    }
+    else
+    {
+        <div class="justify-content-center">
+            <div class="justify-content-center" style="display: inline-block; color: black; text-align: center; font-size: 30px; font-weight: bold;">No Record Found</div>
+        </div>
+    }
+</div>
+
+@section scripts{
+    <script src="~/js/Payroll.js"></script>
+}
+

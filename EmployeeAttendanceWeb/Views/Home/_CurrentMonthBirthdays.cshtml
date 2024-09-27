@@ -1,0 +1,22 @@
+﻿@model List<EmployeeCommon.DTOs.EmployeeBDto>
+
+<div class="card border-0" style="background: linear-gradient(145deg, #ffffff, #f0f0f0); border-radius: 15px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);">
+    <div class="card-header bg-primary text-white" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+        <h5 class="card-title">Birthdays In This Month</h5>
+    </div>
+    <div class="card-body">
+        @foreach (var item in Model)
+        {
+            var BirthYear = DateTime.Today.Year - item.Dob.Year;
+            <div class="row mb-3">
+
+                <div class="col">@item.Name</div>
+                <div class="col">
+                    <span style="font-size: 20px;">🎂🎉</span>
+                    @item.Dob.ToString("dd MMMM")
+                </div>
+
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿<style>
+    /* Highlight effect for DataTable rows */
+    table.dataTable tbody tr.highlight {
+        background-color: green !important;
+    }
+</style>
+<div class="row">
+    <div class="col-9">
+        <h2 class="text-primary">Employee List 👥</h2>
+    </div>
+    <div class="col-3">
+        <button onclick="getEmployee()" data-toggle="modal" data-target="#employeeModal"  class="btn btn-info form-control text-white AddEmployee">
+            <i class="fas fa-plus"></i> Add Employee
+        </button>
+    </div>
+</div>
+<div class="container rounded border p-2 m-2">
+    <table id="tblData" class="table table-bordered table-active table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Gender </th>
+                <th>Phone ☎️</th>
+                <th>Email 📩</th>
+                <th>Salary ₹</th>
+                <th>DOB </th>
+                <th>PAN </th>
+                <th>Actions👇🏿</th>
+            </tr>
+        </thead>
+        <tbody id="tblData_tbody">
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="~/js/Employee2.js"></script>
+    <script src="~/js/CreateUpdate.js"></script>
+}
+
+<partial src="">
+
+</partial>
+
+
+
+<div class="modal fade" id="employeeModal" role="dialog" aria-labelledby="employeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="employeeModalLabel">Create Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+               
+            </div>
+            <div id="employeeModalBody" class="modal-body" >
+             
+            </div>
+        </div>
+    </div>
+</div>
+
+

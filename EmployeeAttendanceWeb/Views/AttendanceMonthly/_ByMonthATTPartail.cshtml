@@ -1,0 +1,73 @@
+﻿@model List<EmployeeCommon.DTOs.AttendanceDTO>
+@using EmployeeCommon.Utility
+
+@{
+    var groupedData = Model.GroupBy(x => x.EmployeeId).ToList();
+    var allDates = DateUtility.GetAllDatesInMonth(Model.Min(x => x.AttendanceDate));
+}
+<div class="table-wrapper" style="max-height: 400px; overflow-x: auto;">
+    <table id="attendanceTable">
+        <thead>
+            <tr>
+                <th class="sticky-header text-left" style="position: sticky; top: 0; left: 0; background-color: white; z-index: 1;">
+                    <span style="white-space: nowrap;">Employee Name</span>
+                </th>
+                <th class="sticky-header text-center">
+                    <span style="white-space: nowrap;">Present</span>
+                </th>
+                <th class="sticky-header text-center">
+                    <span style="white-space: nowrap;">Leave</span>
+                </th>
+                <th class="sticky-header text-center">
+                    <span style="white-space: nowrap;">Absent</span>
+                </th>
+                @foreach (var date in allDates)
+                {
+                    <th class="sticky-header">
+                        <span style="white-space: nowrap;">@date.ToString("dd MMM")</span>
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in groupedData)
+            {
+                var presentCount = employee.Count(x => x.InTime != DateTime.MinValue);
+                var leaveCount = employee.Count(x => x.Leave);
+                var absentCount = employee.Count(x => x.Absent);
+                <tr>
+                    <td class="text-left sticky-col">
+                        <span class="bold" style="white-space: nowrap;">@employee.First().EmployeeName</span>
+                    </td>
+                    <td class="text-center present sticky-col-Present">
+                        <span>@presentCount</span>
+                    </td>
+                    <td class="text-center on-leave sticky-col-Leave">
+                        <span>@leaveCount</span>
+                    </td>
+                    <td class="text-center absent sticky-col-Absent">
+                        <span>@absentCount</span>
+                    </td>
+                    @foreach (var date in allDates)
+                    {
+                        var attendance = employee.FirstOrDefault(x => x.AttendanceDate.Date == date.Date);
+                        <td class="@((attendance != null && attendance.Leave) ? "on-leave" : (attendance != null && attendance.Absent) ? "absent" : (attendance != null && !attendance.Leave && !attendance.Absent&& attendance.InTime!=DateTime.MinValue) ? "present" : "empty")">
+                            @if (attendance != null)
+                            {
+                                <span title='@(attendance.Absent ? "Absent" :
+                                  (attendance.Leave ? "Leave" :
+                                   (attendance.InTime != DateTime.MinValue ?
+                                    (attendance.InTime.ToString("hh\\:mm tt") + " - " + attendance.OutTime.ToString("hh\\:mm tt")+" Duration-"+(attendance.OutTime - attendance.InTime).ToString("hh\\:mm")+" hours") : "")))'>
+                                    @(attendance.Leave ? "L" : (attendance.Absent ? "A" :
+                                        (attendance.InTime != DateTime.MinValue ?
+                                        "P" : "")))
+                                </span>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

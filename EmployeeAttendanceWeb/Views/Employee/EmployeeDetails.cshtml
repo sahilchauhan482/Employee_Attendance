@@ -1,0 +1,111 @@
+﻿@model EmployeeWeb.Models.ViewModel.EmployeeViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            padding-top: 20px !important;
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .card-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .btn-back {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+            .btn-back:hover {
+                background-color:red;
+                color: #fff;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header">
+                        Employee Details
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <p><strong>Name:</strong> @Model.employees.Name</p>
+                                <p><strong>Gender:</strong> @Model.employees.Gender</p>
+                            </div>
+                            <div class="col">
+                                <p><strong>Mobile Number:</strong> @Model.employees.MobileNumber</p>
+                                <p><strong>Email:</strong> @Model.employees.Email</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p><strong>Salary:</strong> @Model.employees.Salary</p>
+                                <p><strong>Date of Birth:</strong> @Model.employees.Dob.ToString("dd-MMM-yyyy")</p>
+                            </div>
+                            <div class="col">
+                                <p><strong>PAN Number:</strong> @Model.employees.PanNumber</p>
+                                <p><strong>Joining Date:</strong> @Model.employees.JoiningDate.ToString("dd-MMM-yyyy")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p><strong>City:</strong>@Model.employees.CityName</p>
+                                <p><strong>State:</strong>@Model.employees.StateName <span id="State"></span></p>
+                            </div>
+                            <div class="col">
+                                
+                                <p><strong>Country:</strong>@Model.employees.CountryName <span id="Country"></span></p>
+                            </div>
+                        </div>
+                        <a asp-action="Index" class="btn btn-back" onclick="goBack()">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

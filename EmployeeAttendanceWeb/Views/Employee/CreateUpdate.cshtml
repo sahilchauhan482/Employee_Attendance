@@ -1,0 +1,184 @@
+﻿@model EmployeeWeb.Models.ViewModel.EmployeeViewModel
+
+<form method="post" id="registerForm" action="@Url.Action("CreateUpdate", "Employee") ">
+    <input type="hidden" value="@Model.employees.Id" id="employeeid" name="Id" />
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label>Employee Name</label>
+                <input type="text" id="employeename" name="Name" value="@Model.employees.Name" class="form-control" required />
+
+                <span asp-validation-for="employees.Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+
+                <label asp-for="employees.Gender"></label>
+                <select name="Gender" value="employees.Gender" id="gender" class="form-control" required>
+                    <option value="">-Select Gender-</option>
+                    @if (Model.employees.Gender == "Male")
+                    {
+                        <option value="Male" selected>Male</option>
+                    }
+                    else
+                    {
+                        <option value="Male">Male</option>
+                    }
+
+                    @if (Model.employees.Gender == "Female")
+                    {
+                        <option value="Female" selected>Female</option>
+                    }
+                    else
+                    {
+                        <option value="Female">Female</option>
+                    }
+
+                    @if (Model.employees.Gender == "Other")
+                    {
+                        <option value="Other" selected>Other</option>
+                    }
+                    else
+                    {
+                        <option value="Other">Other</option>
+                    }
+                </select>
+                <span asp-validation-for="employees.Gender" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="employees.Dob"></label>
+                @{
+                    string dobValue = DateTime.Today.ToString("yyyy-MM-dd");
+                    if (Model.employees.Dob != DateTime.MinValue)
+                    {
+                        dobValue = Model.employees.Dob.ToString("yyyy-MM-dd");
+                    }
+                }
+                <input type="date" id="age" onchange="CheckAge()" name="Dob" value="@dobValue" class="form-control" required />
+                <span asp-validation-for="employees.Dob" class="text-danger"></span>
+                <div id="agechecking" style="display: none; color: red;"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="employees.MobileNumber"></label>
+                <input type="tel" id="mobile" name="MobileNumber" value="@Model.employees.MobileNumber" class="form-control phonenumber" required maxlength="10" />
+                <span asp-validation-for="employees.MobileNumber" class="text-danger"></span>
+                <div id="errorPhone" style="display: none; color: red;"></div>
+            </div>
+        </div>
+
+
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="employees.Email"></label>
+                <input type="email" name="Email" id="email" onchange="sendEmailValue()" value="@Model.employees.Email" class="form-control" required />
+                <div id="error" style="display: none; color: red;"></div>
+                <span asp-validation-for="employees.Email" class="text-danger"></span>
+
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="employees.PanNumber"></label>
+                <input type="text" id="pannumber" name="PanNumber" value="@Model.employees.PanNumber" class="form-control" required maxlength="9" />
+                <span asp-validation-for="employees.PanNumber" class="text-danger"></span>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <label>Country</label>
+            <select id="country" onchange="countrySelected(this)" value="@Model.employees.CountryId" name="CountryId" class="form-control" required>
+                <option>--Select Country--</option>
+                @foreach (var item in Model.CountryList)
+                {
+                    if (Model.employees.CountryId == item.Id)
+                    {
+                        <option selected="selected" value="@item.Id">@item.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                }
+                <span asp-validation-for="employees.CountryName" class="text-danger"></span>
+            </select>
+        </div>
+        <div class="col-4">
+            <label>State</label>
+            <select id="state" onchange="stateSelected(this)" value="@Model.employees.StateId" name="StateId" class="form-control" required>
+                <option>--Select State--</option>
+                @foreach (var item in Model.StateList)
+                {
+                    if (Model.employees.StateId == item.Id)
+                    {
+                        <option selected="selected" value="@item.Id">@item.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                }
+                <span asp-validation-for="employees.StateName" class="text-danger"></span>
+            </select>
+        </div>
+        <div class="col-4">
+            <label>City</label>
+            <select id="city" onchange="citySelected(this)" Value="@Model.employees.CityId" name="CityId" class="form-control" required>
+                <option>--Select City--</option>
+                @foreach (var item in Model.CityList)
+                {
+                    if (Model.employees.CityId == item.Id)
+                    {
+                        <option selected="selected" value="@item.Id">@item.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                }
+                <span asp-validation-for="employees.CityName" class="text-danger"></span>
+            </select>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-4">
+            <label asp-for="employees.JoiningDate"></label>
+            @{
+                string jdValue = DateTime.Today.ToString("yyyy-MM-dd");
+                if (Model.employees.JoiningDate != DateTime.MinValue)
+                {
+                    jdValue = Model.employees.JoiningDate.ToString("yyyy-MM-dd");
+                }
+            }
+            <input type="date" name="JoiningDate" value="@jdValue" class="form-control" required max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            <span asp-validation-for="employees.JoiningDate" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="employees.Salary"></label>
+                <input type="text" name="Salary" id="salary" value="@Model.employees.Salary" class="form-control" required />
+                <span asp-validation-for="employees.Salary" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="float-end mt-3">
+        <button type="submit" id="employee-submit-btn" class="btn btn-success">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    </div>
+
+</form>
+
+ 
+
+
+
